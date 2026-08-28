@@ -66,7 +66,7 @@ if (window.QRCode && qrContainer) {
     text: SITE_URL,
     width: 128,
     height: 128,
-    colorDark: '#0F5C4A',
+    colorDark: '#229954',
     colorLight: '#00000000',
     correctLevel: QRCode.CorrectLevel.M,
   });
