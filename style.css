@@ -93,19 +93,19 @@ body {
   box-shadow: var(--shadow-card);
   padding: 32px;
   animation: fadeIn 0.35s ease-out;
-  overflow: hidden; /* يضمن انقصاص عناصر البطاقة مع الانحناءات */
+  overflow: hidden; /* يقص الشريط العلوي ليتطابق تمامًا مع انحناء الزوايا */
 }
 
-/* الشريط العلوي متناسق تمامًا مع حواف البطاقة */
+/* الشريط الملون المندمج مع حافة البطاقة */
 .card::before {
   content: '';
   position: absolute;
   top: 0;
-  right: 0;
   left: 0;
+  right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
-  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  z-index: 1;
 }
 
 .sr-only {
