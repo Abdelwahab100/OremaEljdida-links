@@ -1,13 +1,10 @@
 /* ============================================
    منظمة التجديد الطلابي - فرع الجديدة
-   نظام الألوان (Design Tokens)
-   اجتهاد تصميمي مؤسساتي هادئ — وليس هوية موثقة رسميًا.
-   لتغيير الألوان: عدّل القيم في :root و .dark فقط.
    ============================================ */
 
 :root {
   --brand-primary: #229954;
-  --brand-primary-hover: #1e8449;
+  --brand-primary-hover: #1b7a43;
   --brand-accent: #f39c12;
   --brand-accent-hover: #d68910;
 
@@ -21,14 +18,14 @@
 
   --radius-card: 24px;
   --radius-item: 12px;
-  --shadow-card: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 20px 50px -12px rgba(0, 0, 0, 0.12);
 }
 
 .dark {
-  --brand-primary: #2ecc71;
-  --brand-primary-hover: #58d68d;
-  --brand-accent: #f5b041;
-  --brand-accent-hover: #f8c471;
+  --brand-primary: #229954;
+  --brand-primary-hover: #2ecc71;
+  --brand-accent: #f39c12;
+  --brand-accent-hover: #f5b041;
 
   --bg: #0e1512;
   --surface: #16211c;
@@ -39,16 +36,12 @@
   --border: #26332c;
 }
 
-/* ============================================
-   إعادة ضبط أساسية
-   ============================================ */
-
+/* إعادة ضبط أساسية */
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -68,21 +61,7 @@ body {
   border-radius: 6px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ============================================
-   تخطيط الصفحة
-   ============================================ */
-
+/* التخطيط الرئيسي */
 .page {
   position: relative;
   min-height: 100vh;
@@ -90,7 +69,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   padding: 40px 16px;
 }
 
@@ -103,14 +81,7 @@ body {
   background-size: 28px 28px;
 }
 
-.dark .bg-pattern {
-  opacity: 0.07;
-}
-
-/* ============================================
-   البطاقة الرئيسية
-   ============================================ */
-
+/* البطاقة */
 .card {
   position: relative;
   width: 100%;
@@ -124,7 +95,6 @@ body {
   box-shadow: var(--shadow-card);
   padding: 32px;
   animation: fadeIn 0.35s ease-out;
-  overflow: hidden;
 }
 
 .card::before {
@@ -149,27 +119,12 @@ body {
   border: 0;
 }
 
-@media (min-width: 480px) {
-  .card {
-    padding: 36px;
-  }
-}
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ============================================
-   زر الوضع الداكن/الفاتح
-   ============================================ */
-
+/* زر الوضع الداكن/الفاتح */
 .theme-toggle {
   position: absolute;
   top: 24px;
@@ -184,27 +139,21 @@ body {
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .theme-toggle:hover {
   color: var(--brand-primary);
   border-color: var(--brand-primary);
+  transform: rotate(15deg);
 }
 
-.theme-toggle:active {
-  transform: scale(0.95);
-}
-
-/* ============================================
-   الهوية (الشعار + الاسم)
-   ============================================ */
-
+/* الهوية والشعار */
 .identity {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   text-align: center;
   padding-top: 8px;
 }
@@ -216,25 +165,11 @@ body {
   user-select: none;
 }
 
-.identity-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
 .identity-text h1 {
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  line-height: 1.4;
   color: var(--text-primary);
-}
-
-@media (min-width: 480px) {
-  .identity-text h1 {
-    font-size: 24px;
-  }
 }
 
 .branch-latin {
@@ -247,10 +182,6 @@ body {
   color: var(--brand-accent);
 }
 
-/* ============================================
-   الوصف
-   ============================================ */
-
 .description {
   margin: 0;
   text-align: center;
@@ -259,21 +190,14 @@ body {
   color: var(--text-secondary);
 }
 
-/* ============================================
-   روابط التواصل الاجتماعي
-   ============================================ */
-
+/* قائمة الأزرار والروابط */
 .social-links ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-item);
-  overflow: hidden;
-}
-
-.social-links li + li {
-  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .social-item {
@@ -281,30 +205,16 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px 16px;
+  padding: 14px 18px;
+  border-radius: var(--radius-item);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
   text-decoration: none;
   color: var(--text-primary);
-  transition: background-color 0.15s ease;
-}
-
-a.social-item {
-  cursor: pointer;
-}
-
-a.social-item:hover {
-  background-color: color-mix(in srgb, var(--brand-primary) 6%, transparent);
-}
-
-a.social-item svg {
-  color: var(--brand-primary);
-}
-
-.social-item.disabled {
-  opacity: 0.45;
-}
-
-.social-item.disabled svg {
-  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .social-item-left {
@@ -312,28 +222,57 @@ a.social-item svg {
   align-items: center;
   gap: 12px;
   font-size: 14px;
-  font-weight: 500;
+}
+
+.social-item-left svg {
+  color: var(--brand-primary);
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .social-item .chevron {
   color: var(--text-secondary);
-  transition: transform 0.15s ease, color 0.15s ease;
+  opacity: 0.7;
+  transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease;
 }
 
-a.social-item:hover .chevron {
-  transform: translateX(-2px);
+/* تأثيرات أزرار الروابط (Hover & Active Effects) */
+.social-item:hover {
+  border-color: var(--brand-primary);
+  background-color: color-mix(in srgb, var(--brand-primary) 5%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 153, 84, 0.12);
+}
+
+.social-item:hover .social-item-left svg {
+  transform: scale(1.15);
+}
+
+.social-item:hover .chevron {
+  transform: translateX(-4px);
   color: var(--brand-primary);
+  opacity: 1;
 }
 
-.soon {
-  font-size: 12px;
-  color: var(--text-secondary);
+.social-item:active {
+  transform: translateY(0);
 }
 
-/* ============================================
-   QR Code + المشاركة
-   ============================================ */
+/* زر متميز (مثل استمارة الانخراط) */
+.social-item.feature-link {
+  border-color: color-mix(in srgb, var(--brand-accent) 40%, var(--border));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--brand-accent) 6%, transparent), transparent);
+}
 
+.social-item.feature-link .social-item-left svg {
+  color: var(--brand-accent);
+}
+
+.social-item.feature-link:hover {
+  border-color: var(--brand-accent);
+  box-shadow: 0 4px 14px rgba(243, 156, 18, 0.18);
+}
+
+/* إجراءات المشاركة و QR Code */
 .actions {
   display: flex;
   flex-direction: column;
@@ -354,14 +293,12 @@ a.social-item:hover .chevron {
   padding: 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-item);
-  background-color: var(--surface);
+  background-color: #ffffff;
   display: inline-flex;
 }
 
-.qrcode img,
-.qrcode canvas {
+.qrcode img, .qrcode canvas {
   display: block;
-  border-radius: 4px;
 }
 
 .qr-caption {
@@ -373,7 +310,7 @@ a.social-item:hover .chevron {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: var(--radius-item);
   border: 1px solid var(--border);
   background: transparent;
@@ -382,32 +319,27 @@ a.social-item:hover .chevron {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .share-btn:hover {
   border-color: var(--brand-primary);
   color: var(--brand-primary);
+  background-color: color-mix(in srgb, var(--brand-primary) 5%, transparent);
 }
 
 .share-btn:active {
   transform: scale(0.97);
 }
 
-/* ============================================
-   التذييل
-   ============================================ */
-
+/* التذييل */
 .footer {
   text-align: center;
   font-size: 12px;
   color: var(--text-secondary);
 }
 
-/* ============================================
-   Toast (إشعار نسخ الرابط)
-   ============================================ */
-
+/* Toast */
 .toast {
   position: fixed;
   bottom: 24px;
@@ -419,7 +351,7 @@ a.social-item:hover .chevron {
   gap: 8px;
   background-color: var(--text-primary);
   color: var(--surface);
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: var(--radius-item);
   box-shadow: var(--shadow-card);
   font-size: 14px;
