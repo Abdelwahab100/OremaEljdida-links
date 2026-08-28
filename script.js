@@ -3,7 +3,6 @@
 // script.js — منطق الصفحة
 // ============================================
 
-// جلب رابط الصفحة الحالية تلقائيًا، أو الاعتماد على الرابط الافتراضي
 const SITE_URL = window.location.origin !== 'null' && window.location.href.startsWith('http')
   ? window.location.href
   : 'https://abdelwahab100.github.io/OremaEljdida-links/';
@@ -63,26 +62,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
 });
 
 // ============================================
-// 2) توليد QR Code
-// ============================================
-
-const qrContainer = document.getElementById('qrcode');
-
-if (window.QRCode && qrContainer) {
-  new QRCode(qrContainer, {
-    text: SITE_URL,
-    width: 128,
-    height: 128,
-    colorDark: '#229954',
-    colorLight: 'transparent',
-    correctLevel: QRCode.CorrectLevel.M,
-  });
-} else if (qrContainer) {
-  qrContainer.textContent = 'تعذّر توليد رمز QR';
-}
-
-// ============================================
-// 3) المشاركة نسخ الرابط Toast
+// 2) المشاركة (Web Share API) + نسخ الرابط + Toast
 // ============================================
 
 const shareBtn = document.getElementById('share-btn');
