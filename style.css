@@ -70,15 +70,6 @@ body {
   padding: 40px 16px;
 }
 
-.bg-pattern {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: radial-gradient(circle, var(--brand-primary) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
 /* البطاقة الرئيسية */
 .card {
   position: relative;
