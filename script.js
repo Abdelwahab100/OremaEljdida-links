@@ -1,13 +1,15 @@
 // ============================================
 // منظمة التجديد الطلابي - فرع الجديدة
-// script.js — منطق الصفحة (بدون أي إطار عمل، JS خام)
+// script.js — منطق الصفحة
 // ============================================
 
-// عدّل هذا الرابط إذا تغيّر اسم المستودع أو النطاق
-const SITE_URL = 'https://abdelwahab100.github.io/OremaEljdida-links/';
+// جلب رابط الصفحة الحالية تلقائيًا، أو الاعتماد على الرابط الافتراضي
+const SITE_URL = window.location.origin !== 'null' && window.location.href.startsWith('http')
+  ? window.location.href
+  : 'https://abdelwahab100.github.io/OremaEljdida-links/';
+
 const SITE_TITLE = 'منظمة التجديد الطلابي - فرع الجديدة';
-const SITE_DESCRIPTION =
-  'إطار طلابي مدني يهتم بشؤون الطلبة الجامعيين بمدينة الجديدة.';
+const SITE_DESCRIPTION = 'إطار طلابي مدني يهتم بشؤون الطلبة الجامعيين بمدينة الجديدة.';
 
 // ============================================
 // 1) الوضع الفاتح / الداكن
@@ -28,25 +30,30 @@ function getInitialTheme() {
 function applyTheme(theme) {
   if (theme === 'dark') {
     root.classList.add('dark');
-    iconMoon.style.display = 'none';
-    iconSun.style.display = 'block';
+    if (iconMoon && iconSun) {
+      iconMoon.style.display = 'none';
+      iconSun.style.display = 'block';
+    }
   } else {
     root.classList.remove('dark');
-    iconMoon.style.display = 'block';
-    iconSun.style.display = 'none';
+    if (iconMoon && iconSun) {
+      iconMoon.style.display = 'block';
+      iconSun.style.display = 'none';
+    }
   }
 }
 
 let currentTheme = getInitialTheme();
 applyTheme(currentTheme);
 
-themeToggleBtn.addEventListener('click', () => {
-  currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-  localStorage.setItem(THEME_KEY, currentTheme);
-  applyTheme(currentTheme);
-});
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    localStorage.setItem(THEME_KEY, currentTheme);
+    applyTheme(currentTheme);
+  });
+}
 
-// اتباع تفضيل النظام تلقائيًا إذا لم يختر المستخدم يدويًا من قبل
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
   const hasManualPreference = localStorage.getItem(THEME_KEY);
   if (!hasManualPreference) {
@@ -56,7 +63,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
 });
 
 // ============================================
-// 2) توليد QR Code (محليًا بالكامل عبر مكتبة qrcodejs)
+// 2) توليد QR Code
 // ============================================
 
 const qrContainer = document.getElementById('qrcode');
@@ -67,7 +74,7 @@ if (window.QRCode && qrContainer) {
     width: 128,
     height: 128,
     colorDark: '#229954',
-    colorLight: '#00000000',
+    colorLight: 'transparent',
     correctLevel: QRCode.CorrectLevel.M,
   });
 } else if (qrContainer) {
@@ -75,7 +82,7 @@ if (window.QRCode && qrContainer) {
 }
 
 // ============================================
-// 3) المشاركة (Web Share API) + نسخ الرابط + Toast
+// 3) المشاركة نسخ الرابط Toast
 // ============================================
 
 const shareBtn = document.getElementById('share-btn');
@@ -83,6 +90,7 @@ const toast = document.getElementById('toast');
 let toastTimeout;
 
 function showToast() {
+  if (!toast) return;
   clearTimeout(toastTimeout);
   toast.classList.add('visible');
   toastTimeout = setTimeout(() => {
@@ -90,26 +98,28 @@ function showToast() {
   }, 2200);
 }
 
-shareBtn.addEventListener('click', async () => {
-  const shareData = {
-    title: SITE_TITLE,
-    text: SITE_DESCRIPTION,
-    url: SITE_URL,
-  };
+if (shareBtn) {
+  shareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: SITE_TITLE,
+      text: SITE_DESCRIPTION,
+      url: SITE_URL,
+    };
 
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-    } catch (err) {
-      // المستخدم ألغى المشاركة — لا حاجة لأي إجراء
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        // ألغى المستخدم المشاركة
+      }
+      return;
     }
-    return;
-  }
 
-  try {
-    await navigator.clipboard.writeText(SITE_URL);
-    showToast();
-  } catch (err) {
-    // فشل النسخ (نادر) — لا نعرض خطأ مزعج
-  }
-});
+    try {
+      await navigator.clipboard.writeText(SITE_URL);
+      showToast();
+    } catch (err) {
+      // فشل النسخ
+    }
+  });
+}
