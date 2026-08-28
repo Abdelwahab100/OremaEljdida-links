@@ -36,7 +36,6 @@
   --border: #26332c;
 }
 
-/* إعادة ضبط أساسية */
 * {
   box-sizing: border-box;
 }
@@ -61,7 +60,6 @@ body {
   border-radius: 6px;
 }
 
-/* التخطيط الرئيسي */
 .page {
   position: relative;
   min-height: 100vh;
@@ -81,7 +79,6 @@ body {
   background-size: 28px 28px;
 }
 
-/* البطاقة */
 .card {
   position: relative;
   width: 100%;
@@ -148,7 +145,7 @@ body {
   transform: rotate(15deg);
 }
 
-/* الهوية والشعار */
+/* الشعار والهوية */
 .identity {
   display: flex;
   flex-direction: column;
@@ -163,13 +160,6 @@ body {
   max-width: 260px;
   height: auto;
   user-select: none;
-}
-
-.identity-text h1 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text-primary);
 }
 
 .branch-latin {
@@ -190,7 +180,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* قائمة الأزرار والروابط */
+/* الروابط */
 .social-links ul {
   list-style: none;
   margin: 0;
@@ -213,8 +203,6 @@ body {
   color: var(--text-primary);
   font-weight: 500;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
 }
 
 .social-item-left {
@@ -226,16 +214,15 @@ body {
 
 .social-item-left svg {
   color: var(--brand-primary);
-  transition: transform 0.25s ease, color 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .social-item .chevron {
   color: var(--text-secondary);
   opacity: 0.7;
-  transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* تأثيرات أزرار الروابط (Hover & Active Effects) */
 .social-item:hover {
   border-color: var(--brand-primary);
   background-color: color-mix(in srgb, var(--brand-primary) 5%, transparent);
@@ -253,11 +240,6 @@ body {
   opacity: 1;
 }
 
-.social-item:active {
-  transform: translateY(0);
-}
-
-/* زر متميز (مثل استمارة الانخراط) */
 .social-item.feature-link {
   border-color: color-mix(in srgb, var(--brand-accent) 40%, var(--border));
   background: linear-gradient(135deg, color-mix(in srgb, var(--brand-accent) 6%, transparent), transparent);
@@ -272,64 +254,42 @@ body {
   box-shadow: 0 4px 14px rgba(243, 156, 18, 0.18);
 }
 
-/* إجراءات المشاركة و QR Code */
+/* منطقة زر المشاركة */
 .actions {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding-top: 20px;
+  justify-content: center;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 
-.qr-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.qrcode {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-item);
-  background-color: #ffffff;
-  display: inline-flex;
-}
-
-.qrcode img, .qrcode canvas {
-  display: block;
-}
-
-.qr-caption {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
 .share-btn {
+  width: 100%;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
   border-radius: var(--radius-item);
   border: 1px solid var(--border);
-  background: transparent;
+  background: var(--surface);
   color: var(--text-primary);
   font-family: inherit;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .share-btn:hover {
   border-color: var(--brand-primary);
   color: var(--brand-primary);
-  background-color: color-mix(in srgb, var(--brand-primary) 5%, transparent);
+  background-color: color-mix(in srgb, var(--brand-primary) 6%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 153, 84, 0.1);
 }
 
 .share-btn:active {
-  transform: scale(0.97);
+  transform: translateY(0);
 }
 
 /* التذييل */
